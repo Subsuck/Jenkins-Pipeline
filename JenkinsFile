@@ -1,11 +1,11 @@
 pipeline {
     agent any
-    
+
     environment {
         TESTING_ENVIRONMENT = "stage"
         PRODUCTION_ENVIRONMENT = "farhan"
     }
-    
+
     stages {
         stage('Build') {
             steps {
@@ -15,18 +15,35 @@ pipeline {
                 }
             }
         }
-        
+
         stage('Test') {
             steps {
                 script {
                     echo "Using JUnit for automated unit tests"
                     echo "Running unit tests"
-                    echo "Using [Tool Name] for integration tests (replace with the actual tool name)"
+                    // Replace [Tool Name] with the actual tool name for integration tests
+                    echo "Using [Tool Name] for integration tests"
                     echo "Running integration tests"
                 }
             }
+            post {
+                success {
+                    emailext(
+                        subject: "Test Stage - Success",
+                        body: "The test stage has completed successfully.",
+                        to: "amebafarhan@gmail.com",
+                    )
+                }
+                failure {
+                    emailext(
+                        subject: "Test Stage - Failure",
+                        body: "The test stage has failed. Please investigate.",
+                        to: "amebafarhan@gmail.com",
+                    )
+                }
+            }
         }
-        
+
         stage('Code Quality Check') {
             steps {
                 script {
@@ -35,7 +52,7 @@ pipeline {
                 }
             }
         }
-        
+
         stage('Deploy') {
             steps {
                 script {
@@ -44,7 +61,7 @@ pipeline {
                 }
             }
         }
-        
+
         stage('Approval') {
             steps {
                 script {
@@ -53,7 +70,7 @@ pipeline {
                 }
             }
         }
-        
+
         stage('Deploy to Production') {
             steps {
                 script {
