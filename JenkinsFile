@@ -48,7 +48,7 @@ pipeline {
             steps {
                 script {
                     echo "Using SonarQube for code quality checks"
-                    echo "Checking the quality of the code"
+                    echo "Checking the quality of the code and done"
                 }
             }
         }
