@@ -21,25 +21,22 @@ pipeline {
                 script {
                     echo "Using JUnit for automated unit tests"
                     echo "Running unit tests"
-                    // Replace [Tool Name] with the actual tool name for integration tests
-                    echo "Using [Tool Name] for integration tests"
+                    echo "Testing with TestNG"
                     echo "Running integration tests"
                 }
             }
-            post {
-                success {
-                    emailext(
-                        subject: "Test Stage - Success",
-                        body: "The test stage has completed successfully.",
-                        to: "amebafarhan@gmail.com",
-                    )
-                }
-                failure {
-                    emailext(
-                        subject: "Test Stage - Failure",
-                        body: "The test stage has failed. Please investigate.",
-                        to: "amebafarhan@gmail.com",
-                    )
+    post {
+        success {
+            mail to: "amebafarhan@gmail.com",
+            subject: "Build Status Email",
+            body: "Build was successful!"
+        }
+        
+        failure {
+            mail to: "amebafarhan@gmail.com",
+            subject: "Build Status Email",
+            body: "Build was failure!"
+        }
                 }
             }
         }
