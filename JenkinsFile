@@ -44,7 +44,7 @@ pipeline {
         stage('Code Quality Check') {
             steps {
                 script {
-                    echo "Using SonarQube for code quality checks sks da"
+                    echo "Using SonarQube for code quality checks"
                     echo "Checking the quality of the code"
                 }
             }
@@ -77,4 +77,3 @@ pipeline {
             }
         }
     }
-}
