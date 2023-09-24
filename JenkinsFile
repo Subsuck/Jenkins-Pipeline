@@ -11,7 +11,7 @@ pipeline {
             steps {
                 script {
                     echo "Using Maven for automated builds"
-                    echo "Using a build automation tool to compile and package the code"
+                    echo "Using a build automation tool to compile and package the code. I will trigger the jenkins auto after it commit"
                 }
             }
         }
